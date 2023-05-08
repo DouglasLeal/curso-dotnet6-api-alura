@@ -13,6 +13,8 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("FilmeConnection");
 builder.Services.AddDbContext<FilmeContext>(opts => opts.UseSqlServer(connectionString));
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
