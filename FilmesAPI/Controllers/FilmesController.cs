@@ -22,9 +22,9 @@ namespace FilmesAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Filme> Listar()
+        public IEnumerable<Filme> Listar([FromQuery]int skip = 0, [FromQuery]int take = 10)
         {
-            return _filmes;
+            return _filmes.Skip(skip).Take(take);
         }
 
         [HttpGet("{id}")]
