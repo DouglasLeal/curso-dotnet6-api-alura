@@ -21,7 +21,7 @@ namespace FilmesAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Adicionar([FromBody]CreateFilmeDto dto)
+        public IActionResult Adicionar([FromBody] CreateFilmeDto dto)
         {
             Filme filme = _mapper.Map<Filme>(dto);
 
@@ -47,6 +47,19 @@ namespace FilmesAPI.Controllers
             if (filme == null) return NotFound();
 
             return Ok(filme);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Atualizar(int id, [FromBody]UpdateFilmeDto dto)
+        {
+            var filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
+
+            if (filme == null) return NotFound();
+
+            _mapper.Map(dto, filme);
+            _context.SaveChanges();
+
+            return NoContent();
         }
     }
 }
