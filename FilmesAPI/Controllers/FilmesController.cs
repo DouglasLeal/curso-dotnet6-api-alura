@@ -16,5 +16,11 @@ namespace FilmesAPI.Controllers
             _filmes.Add(filme);
             Console.WriteLine(filme.Titulo);
         }
+
+        [HttpGet]
+        public IEnumerable<Filme> Listar()
+        {
+            return _filmes;
+        }
     }
 }
